@@ -1,0 +1,41 @@
+/* src/components/atoms/Button.css */
+
+/* Estilos base reutilizables para el átomo Button */
+.atom-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  white-space: nowrap;
+}
+
+/* Variante específica: Botón Buscar (Línea verde) */
+.btn-search {
+  background-color: transparent;
+  color: #10b981;
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  padding: 0.40rem 0.70rem;
+}
+
+.btn-search:hover {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.btn-search:active {
+  transform: scale(0.98);
+}
+
+.btn-search:disabled {
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}

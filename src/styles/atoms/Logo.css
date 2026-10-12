@@ -1,0 +1,7 @@
+.logo-atom {
+  height: 40px;            /* Define una altura clara */
+  width: auto;             /* Mantiene la proporción original sin deformar */
+  object-fit: contain;     /* Garantiza que la imagen encaje bien */
+  display: block;
+  transition: transform 0.2s ease-in-out;
+}

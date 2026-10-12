@@ -1,0 +1,31 @@
+.atom-input {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #374151;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Cuando se hace clic o escribe */
+.atom-input:focus {
+  border-color: #10b981; /* Verde matching con el botón Buscar */
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+}
+
+/* Estilo para el placeholder */
+.atom-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Estado deshabilitado */
+.atom-input:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}

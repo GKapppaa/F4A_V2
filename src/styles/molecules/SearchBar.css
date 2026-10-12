@@ -1,0 +1,14 @@
+/* src/styles/molecules/SearchBar.css */
+
+.molecule-searchbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Ajusta este valor (8px) para más o menos separación */
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Para asegurarte de que el input ocupe el espacio disponible */
+.searchbar-input {
+  flex: 1;
+}
