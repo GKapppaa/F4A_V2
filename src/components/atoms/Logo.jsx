@@ -3,12 +3,12 @@ import React from 'react';
 import logoImg from '../../assets/images/logo.webp';
 import '../../styles/atoms/Logo.css';
 
-function Logo({ alt = "Logo de la página", className = "logo-atom" }) {
+function Logo({ alt = "Logo de la página", className = "" }) {
   return (
     <img 
       src={logoImg} 
       alt={alt} 
-      className={className} 
+      className={`atom-logo ${className}`} 
     />
   );
 }

@@ -8,13 +8,17 @@ import SearchBar from './components/molecules/SearchBar.jsx'
 
 function App() {
 
+  function busquedaTest(searchText){
+    console.log(searchText);
+  }
   return ( 
     <>
     <Logo/>
-    <SearchBar/>
+    <SearchBar onSearch={busquedaTest}/>
     </>
 
   )
 }
+
 
 export default App
