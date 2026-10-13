@@ -1,0 +1,10 @@
+.site-header{
+    background-color: black;
+    padding: 10px 16px;
+    width: 100%;
+}
+.header-top{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

@@ -5,7 +5,7 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import Logo from './components/atoms/Logo.jsx'
 import SearchBar from './components/molecules/SearchBar.jsx'
-
+import Header from './components/organisms/Header.jsx'
 function App() {
 
   function busquedaTest(searchText){
@@ -13,8 +13,7 @@ function App() {
   }
   return ( 
     <>
-    <Logo/>
-    <SearchBar onSearch={busquedaTest}/>
+      <Header/>
     </>
 
   )
