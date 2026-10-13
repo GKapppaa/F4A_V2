@@ -3,7 +3,7 @@
 .molecule-searchbar {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Ajusta este valor (8px) para más o menos separación */
+  gap: 0.5rem;
   width: 100%;
   max-width: 400px;
 }

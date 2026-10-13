@@ -15,7 +15,7 @@
 /* Cuando se hace clic o escribe */
 .atom-input:focus {
   border-color: #10b981; /* Verde matching con el botón Buscar */
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.541);
 }
 
 /* Estilo para el placeholder */

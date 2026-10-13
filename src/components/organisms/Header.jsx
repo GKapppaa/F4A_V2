@@ -2,6 +2,7 @@
 import React from 'react';
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
+import SearchBar from '../molecules/SearchBar';
 
 export const Header = () => {
   return (
@@ -12,16 +13,7 @@ export const Header = () => {
           <Logo />
         </div>
 
-        <form className="header-search" onSubmit={(e) => e.preventDefault()}>
-          <input 
-            type="text" 
-            placeholder="Buscar" 
-            className="search-input" 
-          />
-          <button type="submit" className="btn-search">
-            Buscar
-          </button>
-        </form>
+        <SearchBar/>
 
         <div className="header-auth">
           <button className="btn-login">Iniciar Sesión</button>
