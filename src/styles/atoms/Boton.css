@@ -18,7 +18,7 @@
 
 /* Variante específica: Botón Buscar (Línea verde) */
 .btn-search {
-  background-color: transparent;
+  background-color: white;
   color: #10b981;
   border: 1px solid #10b981;
   border-radius: 8px;
@@ -41,7 +41,7 @@
 }
 
 .btn-login{
-  background-color: transparent;
+  background-color: white;
   color: #107bb9;
   border: 1px solid #107bb9;
   border-radius: 8px;
@@ -54,7 +54,7 @@
 }
 
 .btn-register{
-  background-color: transparent;
+  background-color: white;
   color: #107bb9;
   border: 1px solid #107bb9;
   border-radius: 8px;

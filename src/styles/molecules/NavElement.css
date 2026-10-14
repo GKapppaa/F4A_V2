@@ -8,3 +8,41 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.header-bottom a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.header-bottom a:hover {
+    color: lightgreen;
+}
+
+.header-top {
+    /* Fondo con degradado ascendente + imagen */
+    background-image:
+        linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent),
+        url('../../assets/images/Gemini.webp');
+
+    /* Configuración de posición y tamaño */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-top h1 {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    line-height: 0;
+}
