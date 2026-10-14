@@ -1,10 +1,32 @@
-// src/components/organisms/Header/Header.jsx
+import React, { useState, useRef, useEffect } from 'react';
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
 import SearchBar from '../molecules/SearchBar';
 import NavElement from '../molecules/NavElement';
+import AuthDropdown from '../molecules/AuthDropdown'; // 1. Importamos la molécula
 
 export const Header = () => {
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const authRef = useRef(null);
+
+  const toggleAuth = () => {
+    setIsAuthOpen((prev) => !prev);
+  };
+
+  // Cierra el menú desplegable si el usuario hace clic fuera de él
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (authRef.current && !authRef.current.contains(event.target)) {
+        setIsAuthOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const navLinks = [
     { id: 'home', href: '/', label: 'Home', active: true },
     { id: 'categorias', href: '/categorias', label: 'Categorías ▾' },
@@ -22,10 +44,18 @@ export const Header = () => {
           <Logo />
         </div>
 
-        <SearchBar/>
+        <SearchBar />
 
-        <div className="header-auth">
-          <button className="btn-login">Acceder</button>
+        {/* 2. Asignamos la ref al contenedor y montamos AuthDropdown */}
+        <div className="header-auth" ref={authRef} style={{ position: 'relative' }}>
+          <button className="btn-login" onClick={toggleAuth}>
+            Acceder
+          </button>
+
+          <AuthDropdown 
+            isOpen={isAuthOpen} 
+            onClose={() => setIsAuthOpen(false)} 
+          />
         </div>
       </div>
 
