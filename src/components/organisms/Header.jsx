@@ -41,7 +41,7 @@ export const Header = () => {
       {/* Fila Superior */}
       <div className="header-top">
         <div className="header-brand">
-          <Logo />
+          <Logo/>
         </div>
 
         <SearchBar />
