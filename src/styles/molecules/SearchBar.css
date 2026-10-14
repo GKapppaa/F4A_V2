@@ -1,14 +1,31 @@
-/* src/styles/molecules/SearchBar.css */
-
 .molecule-searchbar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 400px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    display: flex;
+    background-color: lightgreen;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 550px;
+    height: 40px;
+    align-items: center;
 }
 
-/* Para asegurarte de que el input ocupe el espacio disponible */
-.searchbar-input {
-  flex: 1;
+.molecule-searchbar:focus-within {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
 }
+
+.molecule-searchbar .searchbar-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.55rem 0.9rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.btn-search{}

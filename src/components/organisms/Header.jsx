@@ -3,7 +3,12 @@ import React from 'react';
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
 import SearchBar from '../molecules/SearchBar';
+<<<<<<< Updated upstream
 import '../../styles/molecules/NavElement.css'
+=======
+import NavElement from '../molecules/NavElement';
+import '../../styles/molecules/NavElement.css';
+>>>>>>> Stashed changes
 
 export const Header = () => {
   return (
