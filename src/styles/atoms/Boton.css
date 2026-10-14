@@ -23,11 +23,12 @@
   border: 1px solid #10b981;
   border-radius: 8px;
   padding: 0.40rem 0.70rem;
+  font-weight: bold;
 }
 
 .btn-search:hover {
-  background-color: #10b981;
-  color: #ffffff;
+  background-color: #14fd88;
+  color: #000000;
 }
 
 .btn-search:active {
@@ -46,22 +47,44 @@
   border: 1px solid #107bb9;
   border-radius: 8px;
   padding: 0.40rem 0.70rem;
+  font-weight: bold;
 }
 
 .btn-login:hover {
-  background-color: #107bb9;
-  color: #ffffff;
+  background-color: #0099ff;
+  color: #000000;
 }
 
-.btn-register{
-  background-color: white;
-  color: #107bb9;
-  border: 1px solid #107bb9;
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+.btn-login:disabled {
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-cart{
+  background-color: #14fd88;
+  color: #000000;
+  border: 1px solid #10b981;
   border-radius: 8px;
   padding: 0.40rem 0.70rem;
+  font-weight: bold;
 }
 
-.btn-register:hover {
-  background-color: #107bb9;
-  color: #ffffff;
+.btn-cart:hover {
+  background-color: #fefefe;
+  color: #10b981;
+}
+
+.btn-cart:active {
+  transform: scale(0.98);
+}
+
+.btn-cart:disabled {
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
 }

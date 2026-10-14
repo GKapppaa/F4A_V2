@@ -17,8 +17,7 @@ export const Header = () => {
         <SearchBar/>
 
         <div className="header-auth">
-          <button className="btn-login">Iniciar Sesión</button>
-          <button className="btn-register">Crear Cuenta</button>
+          <button className="btn-login">Acceder</button>
         </div>
       </div>
 
