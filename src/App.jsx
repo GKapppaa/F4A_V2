@@ -1,15 +1,12 @@
-import { useState } from 'react'
 import './App.css'
 import Header from './components/organisms/Header.jsx'
+import FaqSection from './components/organisms/FaqSection.jsx'
 import Footer from './components/organisms/Footer.jsx'
 function App() {
-
-  function busquedaTest(searchText){
-    console.log(searchText);
-  }
   return ( 
     <>
       <Header/>
+      <FaqSection />
       <Footer/>
       
     </>

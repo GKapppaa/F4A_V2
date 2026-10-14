@@ -11,12 +11,13 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: none;
   min-height: 100px;
   margin: 0 auto;
+  padding-inline: max(1rem, calc((100% - 1200px) / 2));
   background-image:
-    linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.12)),
-    url('../../assets/images/Gemini.webp');
+  linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.12)),
+  url('../../assets/images/Gemini.webp');
   background-position: center;
   background-size: cover;
 }
@@ -34,6 +35,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-left: auto;
 }
 
 .site-header .btn-login,
@@ -70,9 +73,9 @@
 }
 
 .header-bottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
   width: 100%;
   max-width: 1200px;
@@ -82,14 +85,18 @@
 }
 
 .header-nav {
+  grid-column: 2;
+  justify-self: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(0.75rem, 2vw, 1.75rem);
   flex-wrap: wrap;
 }
 
 .site-header .header-nav .nav-link {
-  padding: 0.25rem 0;
+  padding: 0.50rem 0;
+  justify-items: center;
   color: #ffffff;
   font-size: 0.95rem;
   font-weight: 600;
@@ -103,13 +110,14 @@
 }
 
 .header-cart {
-  flex: 0 0 auto;
+  grid-column: 3;
+  justify-self: end;
 }
 
 @media (max-width: 700px) {
   .header-top {
     min-height: 0;
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
     flex-wrap: wrap;
   }
 

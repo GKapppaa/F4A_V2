@@ -1,6 +1,8 @@
 .molecule-searchbar {
   display: flex;
   align-items: center;
+  justify-content: center;
+  justify-self: center;
   flex: 1;
   width: 100%;
   max-width: 550px;

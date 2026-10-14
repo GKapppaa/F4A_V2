@@ -5,7 +5,7 @@ import SearchBar from '../molecules/SearchBar';
 import NavElement from '../molecules/NavElement';
 import AuthDropdown from '../molecules/AuthDropdown'; // 1. Importamos la molécula
 
-export const Header = () => {
+export const Header = ({ isRegistered = false }) => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const authRef = useRef(null);
 
@@ -74,11 +74,13 @@ export const Header = () => {
           ))}
         </nav>
 
-        <div className="header-cart">
-          <button className="btn-cart">
-            <span className="cart-icon">🛒</span> Carrito $5.000
-          </button>
-        </div>
+        {isRegistered && (
+          <div className="header-cart">
+            <button className="btn-cart" type="button">
+              <span aria-hidden="true">🛒</span> Carrito $5.000
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
