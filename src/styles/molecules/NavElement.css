@@ -14,10 +14,6 @@
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: bold;
-<<<<<<< Updated upstream
-=======
-    padding: 5px;
->>>>>>> Stashed changes
 }
 
 .header-bottom a:hover {
@@ -44,12 +40,9 @@
     margin: 0 auto;
 }
 
-<<<<<<< Updated upstream
 .header-top h1 {
     display: flex;
     align-items: center;
     font-size: 1em;
     line-height: 0;
 }
-=======
->>>>>>> Stashed changes

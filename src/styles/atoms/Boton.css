@@ -21,7 +21,6 @@
   background-color: #10b981;
   color: #ffffff;
   border: 1px solid #10b981;
-<<<<<<< Updated upstream
   border-radius: 8px;
   padding: 0.40rem 0.70rem;
   font-weight: bold;
@@ -30,16 +29,6 @@
 .btn-search:hover {
   background-color: #14fd88;
   color: #000000;
-=======
-  border-radius: 999px;
-  padding: 0.55rem 1.1rem;
-}
-
-.btn-search:hover {
-  background-color: #059669;
-  border-color: #059669;
-  color: #ffffff;
->>>>>>> Stashed changes
 }
 
 .btn-search:active {
