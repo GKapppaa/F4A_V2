@@ -2,8 +2,7 @@
 
 ### Integrantes
 **Daniel Pinto Cabrera** <br>
-**Gustavo Oporto** <br>
-**Roberto Castro**
+**Gustavo Oporto** 
 
 <hr>
 
