@@ -3,7 +3,6 @@ import React from 'react';
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
 import SearchBar from '../molecules/SearchBar';
-import '../../styles/molecules/NavElement.css'
 
 export const Header = () => {
   return (

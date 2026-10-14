@@ -1,17 +1,142 @@
-.site-header{
-    background-color: black;
-    padding: 10px 16px;
-    width: 100%;
-}
-.header-top{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.site-header {
+  width: 100%;
+  padding: 0 1rem 0.75rem;
+  color: #ffffff;
+  background-color: #050505;
 }
 
-.header-brand{
-    max-width: 130px;
-    width: 100%;
-    height: auto;
-    display: block;
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100px;
+  margin: 0 auto;
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.12)),
+    url('../../assets/images/Gemini.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.header-brand {
+  flex: 0 0 130px;
+}
+
+.header-top > .molecule-searchbar {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.site-header .btn-login,
+.site-header .btn-cart {
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #10b981;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-header .btn-login {
+  color: #ffffff;
+  background: transparent;
+}
+
+.site-header .btn-login:hover {
+  color: #050505;
+  background-color: #14fd88;
+}
+
+.site-header .btn-cart {
+  color: #050505;
+  background-color: #14fd88;
+}
+
+.site-header .btn-cart:hover {
+  color: #ffffff;
+  background-color: #10b981;
+}
+
+.header-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+}
+
+.site-header .header-nav .nav-link {
+  padding: 0.25rem 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-header .header-nav .nav-link:hover,
+.site-header .header-nav .nav-link.active {
+  color: #14fd88;
+}
+
+.header-cart {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 700px) {
+  .header-top {
+    min-height: 0;
+    padding: 0.75rem 0;
+    flex-wrap: wrap;
+  }
+
+  .header-brand {
+    flex-basis: 80px;
+  }
+
+  .header-top > .molecule-searchbar {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .header-bottom {
+    align-items: flex-start;
+  }
+
+  .header-nav {
+    gap: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-cart {
+    align-self: flex-start;
+  }
 }
