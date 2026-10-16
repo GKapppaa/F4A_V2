@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
 import SearchBar from '../molecules/SearchBar';
@@ -6,6 +7,7 @@ import NavElement from '../molecules/NavElement';
 import AuthDropdown from '../molecules/AuthDropdown'; // 1. Importamos la molécula
 
 export const Header = ({ isRegistered = false }) => {
+  const { pathname } = useLocation();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const authRef = useRef(null);
 
@@ -66,7 +68,7 @@ export const Header = ({ isRegistered = false }) => {
             <NavElement
               key={link.id}
               href={link.href}
-              active={link.active}
+              active={pathname === link.href || (link.href === '/categorias' && pathname === '/gaming')}
               className="nav-link"
             >
               {link.label}
