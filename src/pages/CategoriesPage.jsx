@@ -4,6 +4,8 @@ import Text from '../components/atoms/Text';
 const categories = [
   { label: 'Videojuegos', href: '/gaming' },
   { label: 'Software', href: '/software' },
+  { label: 'Subscripciones', href: '/subscripciones' },
+  { label: 'Llaves Aleatorias', href: '/randomkey' },
 ];
 
 function CategoriesPage() {

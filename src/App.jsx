@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/pages/Pages.css';
@@ -11,53 +12,47 @@ import ContactPage from './pages/ContactPage.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';
 import InfoPage from './pages/InfoPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import SubscriptionPage from './pages/SubscriptionPage.jsx';
+import RandomKeysPage from './pages/RandomKeysPage.jsx';
+import OffersPage from './pages/OffersPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
 
 function App() {
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  useEffect(() => {
+    // Verificamos si existe una sesión activa almacenada en el localStorage
+    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
+    if (session) {
+      setIsRegistered(true);
+    }
+  }, []);
+
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      {/* Pasamos isRegistered a MainLayout para que el Header muestre u oculte el botón de carrito */}
+      <Route element={<MainLayout isRegistered={isRegistered} />}>
         <Route index element={<HomePage />} />
-        <Route path="gaming" element={<GamingPage />} />
-        <Route path="software" element={<SoftwarePage />} />
-        <Route path="carrito" element={<CartPage />} />
+
+        {/* Pasamos isLoggedIn a las páginas de productos para habilitar/bloquear el botón de compra */}
+        <Route path="gaming" element={<GamingPage isLoggedIn={isRegistered} />} />
+        <Route path="software" element={<SoftwarePage isLoggedIn={isRegistered} />} />
+
+        <Route path="carrito" element={<CartPage isLoggedIn={isRegistered} />} />
         <Route path="registro" element={<RegisterPage />} />
         <Route path="contacto" element={<ContactPage />} />
         <Route path="categorias" element={<CategoriesPage />} />
-        <Route path="subscripciones" element={<InfoPage title="Suscripciones" description="Estamos preparando esta categoría de productos digitales." />} />
+        <Route path="subscripciones" element={<SubscriptionPage isLoggedIn={isRegistered} />} />
         <Route path="regalos" element={<InfoPage title="Regalos digitales" description="Pronto podrás explorar opciones de regalo en F4A." />} />
-        <Route path="randomkey" element={<InfoPage title="Claves aleatorias" description="Esta categoría se encuentra en preparación." />} />
+        <Route path="randomkey" element={<RandomKeysPage isLoggedIn={isRegistered} />} />
         <Route path="faqs" element={<InfoPage title="Preguntas frecuentes" description="Consulta las preguntas frecuentes en el inicio de F4A." />} />
         <Route path="terminos" element={<InfoPage title="Términos y condiciones" description="El contenido legal de F4A estará disponible aquí próximamente." />} />
         <Route path="privacidad" element={<InfoPage title="Privacidad" description="La política de privacidad de F4A estará disponible próximamente." />} />
         <Route path="politica-cookies" element={<InfoPage title="Política de cookies" description="La información sobre cookies estará disponible próximamente." />} />
         <Route path="politica-devoluciones" element={<InfoPage title="Política de devoluciones" description="Las condiciones de devolución estarán disponibles próximamente." />} />
-        <Route
-          path="ofertas"
-          element={
-            <InfoPage
-              title="Ofertas"
-              description="Pronto encontrarás aquí las ofertas y promociones de F4A."
-            />
-          }
-        />
-        <Route
-          path="nosotros"
-          element={
-            <InfoPage
-              title="Sobre F4A"
-              description="Estamos preparando más información sobre nuestro proyecto."
-            />
-          }
-        />
-        <Route
-          path="blog"
-          element={
-            <InfoPage
-              title="Blog"
-              description="Muy pronto compartiremos novedades y contenido sobre productos digitales."
-            />
-          }
-        />
+        <Route path="ofertas" element={<OffersPage title="Ofertas" description="Pronto encontrarás aquí las ofertas y promociones de F4A." isLoggedIn={isRegistered} />} />
+        <Route path="nosotros" element={<AboutPage title="Sobre F4A" description="Estamos preparando más información sobre nuestro proyecto." />} />
+        <Route path="blog" element={<InfoPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
         <Route path="inicio" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

@@ -4,7 +4,7 @@ import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
 import SearchBar from '../molecules/SearchBar';
 import NavElement from '../molecules/NavElement';
-import AuthDropdown from '../molecules/AuthDropdown'; // 1. Importamos la molécula
+import AuthDropdown from '../molecules/AuthDropdown';
 
 export const Header = ({ isRegistered = false }) => {
   const { pathname } = useLocation();
@@ -43,7 +43,7 @@ export const Header = ({ isRegistered = false }) => {
       {/* Fila Superior */}
       <div className="header-top">
         <div className="header-brand">
-          <Logo/>
+          <Logo />
         </div>
 
         <SearchBar />
@@ -54,9 +54,9 @@ export const Header = ({ isRegistered = false }) => {
             Acceder
           </button>
 
-          <AuthDropdown 
-            isOpen={isAuthOpen} 
-            onClose={() => setIsAuthOpen(false)} 
+          <AuthDropdown
+            isOpen={isAuthOpen}
+            onClose={() => setIsAuthOpen(false)}
           />
         </div>
       </div>
@@ -79,7 +79,7 @@ export const Header = ({ isRegistered = false }) => {
         {isRegistered && (
           <div className="header-cart">
             <button className="btn-cart" type="button">
-              <span aria-hidden="true">🛒</span> Carrito $5.000
+              <span aria-hidden="true">🛒</span> Carrito
             </button>
           </div>
         )}
