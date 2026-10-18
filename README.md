@@ -85,19 +85,19 @@ src/
 
 ## Datos y persistencia de demostración
 
-`src/data/mockDatabase.js` contiene usuarios, categorías, productos, ventas y entradas de blog de ejemplo. `src/services/dbService.js` proporciona funciones de acceso y operaciones CRUD apoyadas en `localStorage`.
+`src/data/mockDatabase.js` contiene usuarios, categorías, productos, ventas, tickets y entradas de blog de ejemplo. `src/data/dbService.js` proporciona funciones de acceso y operaciones CRUD apoyadas en `localStorage`.
 
 Las claves de almacenamiento usadas por la aplicación incluyen `f4a_database`, `f4a_session` y `f4a_cart`. Borrar los datos del sitio en el navegador reinicia esta persistencia local.
 
 ## Pruebas
 
-Las pruebas se ejecutan con **Jasmine + Karma** en Chromium Headless y React Testing Library. La suite se enfoca en `Button`, `SearchBar`, `ProductCard` y `MainLayout`: hay **3 archivos de prueba separados por componente**, con un caso unitario en cada archivo (12 archivos y 12 pruebas en total).
+Las pruebas se ejecutan con **Jasmine + Karma** en Chromium Headless y React Testing Library. La suite contiene 19 casos: tres para cada uno de `Button`, `SearchBar`, `ProductCard`, `MainLayout` y `AdminPage`; además prueba `ContactPage` y los servicios de datos. El desglose y los resultados están en `docs/INFORME_COBERTURA_TESTS.md`.
 
 ```bash
 npm test
 ```
 
-Karma genera un reporte HTML y un resumen de cobertura en `coverage/`. Hay spies de Jasmine para comprobar callbacks, como el click del botón y el envío de búsqueda. Ejecuta `npm run lint` y `npm run build` como verificaciones adicionales.
+Karma genera un reporte HTML y un resumen de cobertura en `coverage/`. Se usan spies de Jasmine para callbacks y servicios; los tests de `dbService` verifican persistencia simulada en `localStorage`. Ejecuta `npm run lint` y `npm run build` como verificaciones adicionales.
 
 ## Seguridad de dependencias de testing
 
@@ -110,6 +110,6 @@ Bootstrap aporta el sistema de columnas y utilidades responsive; los estilos esp
 ## Entregables académicos pendientes
 
 - Actualizar el ERS con los requisitos y alcance implementados.
-- Revisar si el alcance/cobertura actual de las 12 pruebas es suficiente para la rúbrica y ampliar casos de lógica y formularios.
-- Adjuntar o resumir el reporte HTML generado en `coverage/` en el documento de testing.
+- Revisar si el alcance/cobertura actual de las 19 pruebas es suficiente para la rúbrica y ampliar casos de checkout y autorización.
+- Adjuntar el informe de `docs/INFORME_COBERTURA_TESTS.md` y el reporte HTML generado en `coverage/`.
 - Preparar el archivo comprimido solicitado para la entrega.
