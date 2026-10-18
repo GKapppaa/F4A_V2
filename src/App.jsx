@@ -41,7 +41,7 @@ function App() {
   return (
     <Routes>
       {/* Pasamos isRegistered a MainLayout para que el Header muestre u oculte el botón de carrito */}
-      <Route element={<MainLayout isRegistered={isRegistered} />}>
+      <Route element={<MainLayout isRegistered={isRegistered} currentUser={currentUser} />}>
         <Route index element={<HomePage />} />
 
         {/* Pasamos isLoggedIn a las páginas de productos para habilitar/bloquear el botón de compra */}

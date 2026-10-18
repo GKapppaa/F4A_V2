@@ -6,7 +6,7 @@ import SearchBar from '../molecules/SearchBar';
 import NavElement from '../molecules/NavElement';
 import AuthDropdown from '../molecules/AuthDropdown';
 
-export const Header = ({ isRegistered = false }) => {
+export const Header = ({ isRegistered = false, currentUser = null }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate(); // 2. Inicializamos la función de navegación
   const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -16,6 +16,12 @@ export const Header = ({ isRegistered = false }) => {
   const toggleAuth = () => {
     setIsAuthOpen((prev) => !prev);
   };
+
+  const accountLabel = !currentUser
+    ? 'Acceder'
+    : currentUser.rol === 'admin'
+      ? 'Admin'
+      : 'Mi cuenta';
 
   // Cierra el menú desplegable si el usuario hace clic fuera de él
   useEffect(() => {
@@ -77,8 +83,13 @@ export const Header = ({ isRegistered = false }) => {
         <SearchBar />
 
         <div className="header-auth" ref={authRef} style={{ position: 'relative' }}>
-          <button className="btn-login" onClick={toggleAuth}>
-            Acceder
+          <button
+            className="btn-login"
+            type="button"
+            onClick={toggleAuth}
+            aria-expanded={isAuthOpen}
+          >
+            {accountLabel}
           </button>
 
           {isAuthOpen && <AuthDropdown
