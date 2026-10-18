@@ -70,15 +70,14 @@ function SubscriptionsPage({ isLoggedIn }) {
                         <div key={item.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
                             {/* Tarjeta cliqueable completa */}
                             <div
-                                className="card h-100 shadow-sm border-0"
+                                    className="card catalog-product-card h-100 shadow-sm border-0"
                                 style={{ cursor: 'pointer' }}
                                 onClick={() => navigate(`/producto/${item.id}`)}
                             >
                                 <img
                                     src={item.imagen || 'https://via.placeholder.com/400x300'}
-                                    className="card-img-top"
+                                    className="card-img-top catalog-product-image"
                                     alt={item.nombre}
-                                    style={{ objectFit: 'cover', height: '180px' }}
                                 />
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title fw-bold">{item.nombre}</h5>

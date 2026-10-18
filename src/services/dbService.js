@@ -14,7 +14,29 @@ export const initDB = () => {
 const getDB = () => {
     initDB();
     const db = localStorage.getItem(DB_KEY);
-    return db ? JSON.parse(db) : initialDatabase;
+    if (!db) return initialDatabase;
+
+    const database = JSON.parse(db);
+    const initialProducts = new Map(initialDatabase.productos.map(producto => [producto.id, producto]));
+    let imagesUpdated = false;
+
+    database.productos = (database.productos || []).map(producto => {
+        const initialProduct = initialProducts.get(producto.id);
+        const hasOldImage = typeof producto.imagen === 'string' && (
+            producto.imagen.includes('via.placeholder.com') ||
+            producto.imagen === '/images/minecraft.webp'
+        );
+
+        if (initialProduct && hasOldImage) {
+            imagesUpdated = true;
+            return { ...producto, imagen: initialProduct.imagen };
+        }
+
+        return producto;
+    });
+
+    if (imagesUpdated) saveDB(database);
+    return database;
 };
 
 // Guardar cambios

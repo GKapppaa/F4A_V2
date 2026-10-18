@@ -1,4 +1,15 @@
 // src/data/mockDatabase.js
+import minecraftImage from '../assets/images/optimized/minecraft.webp';
+import RD2 from '../assets/images/optimized/ReddeadII.webp';
+import w11 from '../assets/images/optimized/windows11.webp';
+import of2021 from '../assets/images/optimized/office2021.webp';
+import ubisoft from '../assets/images/optimized/ubisoft.webp';
+import Xbox from '../assets/images/optimized/Xbox.webp';
+import steamKeyImage from '../assets/images/optimized/steam.webp';
+import xboxRandomImage from '../assets/images/optimized/xboxrandom.webp';
+import nintendoRandomImage from '../assets/images/optimized/nintendoKey.webp';
+import playstationRandomImage from '../assets/images/optimized/playRandom.webp';
+
 
 export const initialDatabase = {
     usuarios: [
@@ -41,7 +52,7 @@ export const initialDatabase = {
             precio: 13450,
             stock: 13,
             esOferta: true,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: minecraftImage,
             descripcion: "Sandbox de construcción y aventura."
         },
         {
@@ -51,7 +62,7 @@ export const initialDatabase = {
             precio: 18990,
             stock: 17,
             esOferta: false,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: RD2,
             descripcion: "Aventura de acción en el lejano oeste."
         },
         {
@@ -61,7 +72,7 @@ export const initialDatabase = {
             precio: 50000,
             stock: 20, // Stock crítico para pruebas de admin
             esOferta: false,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: w11,
             descripcion: "Windows 11 Pro."
         },
         {
@@ -71,7 +82,7 @@ export const initialDatabase = {
             precio: 75000,
             stock: 15, // Stock crítico para pruebas de admin
             esOferta: false,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: of2021,
             descripcion: "Microsoft Office 2021 Pro."
         },
         {
@@ -81,7 +92,7 @@ export const initialDatabase = {
             precio: 6500,
             stock: 15, // Stock crítico para pruebas de admin
             esOferta: true,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: ubisoft,
             descripcion: "Ubisoft+."
         },
         {
@@ -91,7 +102,7 @@ export const initialDatabase = {
             precio: 6500,
             stock: 15, // Stock crítico para pruebas de admin
             esOferta: true,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: Xbox,
             descripcion: "Xbox Game Pass."
         },
         {
@@ -101,7 +112,7 @@ export const initialDatabase = {
             precio: 990,
             stock: 5, // Stock crítico para pruebas de admin
             esOferta: true,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: steamKeyImage,
             descripcion: "Consigue una llave de juego aleatoria."
         },
         {
@@ -111,7 +122,7 @@ export const initialDatabase = {
             precio: 1990,
             stock: 10, // Stock crítico para pruebas de admin
             esOferta: true,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: xboxRandomImage,
             descripcion: "Consigue una llave de juego aleatoria para XBOX."
         },
         {
@@ -121,7 +132,7 @@ export const initialDatabase = {
             precio: 2990,
             stock: 15, // Stock crítico para pruebas de admin
             esOferta: false,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: nintendoRandomImage,
             descripcion: "Consigue una llave de juego aleatoria para Nintendo Switch."
         },
         {
@@ -131,7 +142,7 @@ export const initialDatabase = {
             precio: 1490,
             stock: 15, // Stock crítico para pruebas de admin
             esOferta: false,
-            imagen: "https://via.placeholder.com/400x300",
+            imagen: playstationRandomImage,
             descripcion: "Consigue una llave de juego aleatoria para PlayStation."
         }
     ],
