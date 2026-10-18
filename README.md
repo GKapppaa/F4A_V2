@@ -10,7 +10,9 @@ Proyecto académico de tienda online para videojuegos, software, suscripciones y
 - Vite
 - React Router para navegación
 - Bootstrap 5 y CSS propio para estilos responsive
-- Vitest, React Testing Library y jsdom para pruebas
+- Jasmine y Karma para pruebas unitarias en Chromium Headless
+- React Testing Library para interacciones y consultas accesibles
+- Webpack y Babel para preparar JSX/CSS/assets durante los tests
 
 ## Requisitos
 
@@ -42,9 +44,11 @@ Vite mostrará la dirección local —normalmente `http://localhost:5173`— en 
 | `npm run dev` | Inicia Vite en modo desarrollo. |
 | `npm run build` | Genera la compilación de producción en `dist/`. |
 | `npm run preview` | Sirve localmente la compilación generada. |
-| `npm test` | Ejecuta las pruebas unitarias con Vitest. |
-| `npm run test:watch` | Ejecuta Vitest en modo observación. |
+| `npm test` | Ejecuta las pruebas Jasmine con Karma y Chromium Headless. |
+| `npm run test:watch` | Mantiene Karma observando archivos y reejecuta las pruebas. |
 | `npm run lint` | Revisa el código con ESLint. |
+
+Karma busca Chromium automáticamente en Linux en las rutas estándar. En otros sistemas, define `CHROME_BIN` con la ruta al ejecutable de Chrome/Chromium antes de ejecutar los tests.
 
 ## Funcionalidades actuales
 
@@ -85,13 +89,17 @@ Las claves de almacenamiento usadas por la aplicación incluyen `f4a_database`, 
 
 ## Pruebas
 
-Las pruebas actuales se ejecutan con **Vitest** y React Testing Library; cubren renderizado y comportamiento básico de átomos como botones, inputs, enlaces, imágenes, texto y logo.
+Las pruebas se ejecutan con **Jasmine + Karma** en Chromium Headless y React Testing Library. La suite contiene 12 pruebas sobre átomos, moléculas, organismos y el template principal.
 
 ```bash
 npm test
 ```
 
-La pauta académica solicita Jasmine/Karma y 10 pruebas. La configuración actual no debe confundirse con ese requisito: el script `npm test` usa Vitest. Antes de entregar, confirma con el equipo docente el runner aceptado y completa las pruebas requeridas, mocks y reporte de cobertura.
+Karma genera un reporte HTML y un resumen de cobertura en `coverage/`. Hay spies de Jasmine para comprobar callbacks, como el click del botón y el envío de búsqueda. Ejecuta `npm run lint` y `npm run build` como verificaciones adicionales.
+
+## Seguridad de dependencias de testing
+
+La versión publicada de `braces` usada indirectamente por Karma no tiene una versión upstream parcheada disponible. Para limitar el riesgo, el proyecto usa una copia local con un máximo de profundidad de 100 niveles, referenciada desde `vendor/braces`, y fija `chokidar` en 4.0.3. Esta mitigación es específica para la cadena de herramientas de pruebas. Verifica `npm audit` tras actualizar dependencias y reemplaza la copia local cuando exista una versión oficial corregida.
 
 ## Responsividad
 
@@ -100,6 +108,6 @@ Bootstrap aporta el sistema de columnas y utilidades responsive; los estilos esp
 ## Entregables académicos pendientes
 
 - Actualizar el ERS con los requisitos y alcance implementados.
-- Alinear el runner y el número de pruebas con la rúbrica.
-- Generar y explicar un reporte de cobertura.
+- Revisar si el alcance/cobertura actual de las 12 pruebas es suficiente para la rúbrica y ampliar casos de lógica y formularios.
+- Adjuntar o resumir el reporte HTML generado en `coverage/` en el documento de testing.
 - Preparar el archivo comprimido solicitado para la entrega.

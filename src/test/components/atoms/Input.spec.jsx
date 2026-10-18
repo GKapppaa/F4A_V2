@@ -1,10 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
 import Input from '../../../components/atoms/Input';
 
 describe('Input atom', () => {
   it('muestra el placeholder y propaga cambios al onChange', () => {
-    const handleChange = vi.fn();
+    const handleChange = jasmine.createSpy('handleChange');
 
     render(
       <Input
@@ -16,9 +15,15 @@ describe('Input atom', () => {
     );
 
     const input = screen.getByPlaceholderText('Tu correo');
-    expect(input).toBeRequired();
+    expect(input.required).toBeTrue();
 
     fireEvent.change(input, { target: { value: 'ana@example.com' } });
     expect(handleChange).toHaveBeenCalledTimes(1);
+  });
+
+  it('usa text como tipo predeterminado', () => {
+    render(<Input placeholder="Buscar producto" />);
+
+    expect(screen.getByPlaceholderText('Buscar producto').type).toBe('text');
   });
 });

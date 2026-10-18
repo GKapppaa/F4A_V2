@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import Logo from '../../../components/atoms/Logo';
 
@@ -11,7 +10,7 @@ describe('Logo atom', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByRole('img', { name: 'F4A' })).toBeInTheDocument();
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/inicio');
+    expect(document.body.contains(screen.getByRole('img', { name: 'F4A' }))).toBeTrue();
+    expect(screen.getByRole('link').getAttribute('href')).toBe('/inicio');
   });
 });

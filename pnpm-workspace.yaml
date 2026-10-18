@@ -1,0 +1,3 @@
+overrides:
+  braces: file:vendor/braces
+  chokidar: 4.0.3
