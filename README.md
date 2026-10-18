@@ -106,10 +106,3 @@ La versión publicada de `braces` usada indirectamente por Karma no tiene una ve
 ## Responsividad
 
 Bootstrap aporta el sistema de columnas y utilidades responsive; los estilos específicos están en `src/styles/` y `src/styles/pages/`. Para verificar cambios visuales, prueba al menos un ancho móvil, uno de tablet y uno de escritorio.
-
-## Entregables académicos pendientes
-
-- Actualizar el ERS con los requisitos y alcance implementados.
-- Revisar si el alcance/cobertura actual de las 19 pruebas es suficiente para la rúbrica y ampliar casos de checkout y autorización.
-- Adjuntar el informe de `docs/INFORME_COBERTURA_TESTS.md` y el reporte HTML generado en `coverage/`.
-- Preparar el archivo comprimido solicitado para la entrega.
