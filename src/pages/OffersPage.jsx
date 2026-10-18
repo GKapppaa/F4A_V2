@@ -1,5 +1,5 @@
 import Text from '../components/atoms/Text';
-import { productoService } from '../services/dbService';
+import { productoService } from '../data/dbService';
 import ProductCard from '../components/organisms/ProductCard';
 
 function OffersPage({ isLoggedIn }) {

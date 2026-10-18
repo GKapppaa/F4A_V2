@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { blogService } from '../services/dbService';
+import { blogService } from '../data/dbService';
 
 function BlogDetailPage() {
     const { id } = useParams();

@@ -21,11 +21,22 @@ import AboutPage from './pages/AboutPage.jsx';
 import ProductDetailPage from './pages/ProductDetailPage.jsx';
 import BlogPage from './pages/BlogPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
+import AdminPage from './pages/AdminPage.jsx';
+function readCurrentUser(){
+  try{
+    const savedUser =
+      localStorage.getItem('f4a_session') ||
+      localStorage.getItem('usuario_sesion');
+    return savedUser ? JSON.parse(savedUser) : null;
+  }catch{
+    return null;
+  }
+}
 
 function App() {
-  const [isRegistered] = useState(() => Boolean(
-    localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion')
-  ));
+  const [currentUser] = useState(readCurrentUser);
+  const isRegistered = Boolean(currentUser);
+  const isAdmin = currentUser?.rol === 'admin';
 
   return (
     <Routes>
@@ -56,6 +67,10 @@ function App() {
         <Route path="blog" element={<BlogPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
         <Route path="blog/:id" element={<BlogDetailPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
         <Route path="inicio" element={<Navigate to="/" replace />} />
+        <Route
+          path="admin"
+          element={isAdmin ? <AdminPage /> : <Navigate to="/" replace />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { productoService } from '../services/dbService';
+import { productoService } from '../data/dbService';
 
 function ProductDetailPage({ isLoggedIn }) {
     const { id } = useParams();

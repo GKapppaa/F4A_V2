@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { usuarioService } from '../../services/dbService';
+import { usuarioService } from '../../data/dbService';
 import '../../styles/molecules/AuthDropdown.css';
 
 export const AuthDropdown = ({ onClose }) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { ventaService } from '../services/dbService';
+import { ventaService } from '../data/dbService';
 
 function readCartItems() {
   try {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { usuarioService, initDB } from '../services/dbService';
+import { usuarioService, initDB } from '../data/dbService';
 
 function RegisterPage() {
   const navigate = useNavigate();

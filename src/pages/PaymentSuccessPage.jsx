@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ventaService } from '../services/dbService';
+import { ventaService } from '../data/dbService';
 
 function PaymentSuccessPage() {
     const navigate = useNavigate();

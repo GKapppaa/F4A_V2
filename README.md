@@ -53,10 +53,12 @@ Karma busca Chromium automáticamente en Linux en las rutas estándar. En otros 
 ## Funcionalidades actuales
 
 - Navegación SPA con páginas para inicio, categorías, videojuegos, software, suscripciones, llaves aleatorias, ofertas, blog, registro, contacto y carrito.
+- Panel `/admin` protegido por rol con CRUD de productos, tabla de ventas y bandeja de tickets.
 - Catálogos alimentados por una base de datos de prueba local, con categorías, precios, stock, imágenes y ofertas.
 - Vista de detalle de producto.
 - Registro e inicio de sesión simulados.
 - Carrito persistido en `localStorage`, cambio de cantidades y simulación de pago exitoso o fallido.
+- Mensajes del formulario de contacto guardados como tickets simulados; el panel permite marcar tickets como resueltos o reabrirlos.
 - Validaciones de formulario en registro y contacto.
 - FAQ en la página de inicio y páginas de resultado de pago.
 - Diseño adaptable basado en el grid y utilidades de Bootstrap, complementado con CSS del proyecto.

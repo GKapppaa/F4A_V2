@@ -1,5 +1,5 @@
 // src/services/dbService.js
-import { initialDatabase } from '../data/mockDatabase';
+import { initialDatabase } from './mockDatabase';
 
 const DB_KEY = 'f4a_database';
 
@@ -143,7 +143,36 @@ export const ventaService = {
 };
 
 // ==========================================
-// 4. MÓDULO BLOGS
+// 4. MÓDULO DE TICKETS DE SOPORTE
+// ==========================================
+export const ticketService = {
+    getAll: () => getDB().tickets || [],
+
+    create: (datosTicket) => {
+        const db = getDB();
+        db.tickets = db.tickets || [];
+        const ticket = {
+            id: `TICKET-${Date.now()}`,
+            fecha: new Date().toISOString(),
+            estado: 'Pendiente',
+            ...datosTicket
+        };
+        db.tickets.unshift(ticket);
+        saveDB(db);
+        return ticket;
+    },
+
+    updateStatus: (id, estado) => {
+        const db = getDB();
+        db.tickets = (db.tickets || []).map(ticket =>
+            ticket.id === id ? { ...ticket, estado } : ticket
+        );
+        saveDB(db);
+    }
+};
+
+// ==========================================
+// 5. MÓDULO BLOGS
 // ==========================================
 export const blogService = {
     getAll: () => getDB().blogs || [],

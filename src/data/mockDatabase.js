@@ -167,6 +167,7 @@ export const initialDatabase = {
             estado: "Completado" // 'Completado', 'Fallido', 'Pendiente'
         }
     ],
+    tickets: [],
     // NUEVA SECCIÓN DE BLOGS
     blogs: [
         {

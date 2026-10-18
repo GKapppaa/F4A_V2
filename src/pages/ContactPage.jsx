@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Text from '../components/atoms/Text';
+import { ticketService } from '../data/dbService';
 
 function getInitialFormData() {
   const formData = { nombre: '', correo: '', mensaje: '' };
@@ -62,12 +63,10 @@ function ContactPage() {
       return;
     }
 
-    // Simulación de envío de mensaje al equipo de soporte F4A
-    console.log('Mensaje de contacto enviado:', {
+    ticketService.create({
       nombre: nombreLimpio,
       correo: correoLimpio,
       mensaje: mensajeLimpio,
-      fecha: new Date().toISOString()
     });
 
     setSuccess('¡Tu mensaje ha sido enviado con éxito! Los encargados de F4A te responderán a la brevedad.');
