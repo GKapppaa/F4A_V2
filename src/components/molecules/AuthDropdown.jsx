@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { usuarioService } from '../../data/dbService';
 import '../../styles/molecules/AuthDropdown.css';
 
@@ -59,9 +60,9 @@ export const AuthDropdown = ({ onClose }) => {
           </p>
 
           {currentUser.rol === 'admin' && (
-            <a href="/admin" className="btn btn-outline-primary btn-sm w-100 mb-2">
+            <Link to="/admin" className="btn btn-outline-primary btn-sm w-100 mb-2">
               Panel de Administración
-            </a>
+            </Link>
           )}
 
           <button
