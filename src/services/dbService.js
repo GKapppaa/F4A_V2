@@ -50,6 +50,14 @@ const saveDB = (data) => {
 export const productoService = {
     getAll: () => getDB().productos || [],
 
+    getAllWithCategory: () => {
+        const db = getDB();
+        return (db.productos || []).map(producto => ({
+            ...producto,
+            categoria: db.categorias?.find(categoria => categoria.id === producto.categoriaId)?.nombre || 'Sin categoría'
+        }));
+    },
+
     getById: (id) => (getDB().productos || []).find(p => p.id === Number(id)),
 
     getCriticos: (limiteStock = 5) => (getDB().productos || []).filter(p => p.stock <= limiteStock),
