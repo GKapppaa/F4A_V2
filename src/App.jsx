@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage.jsx';
 import GamingPage from './pages/GamingPage.jsx';
 import SoftwarePage from './pages/SoftwarePage.jsx';
 import CartPage from './pages/CartPage.jsx';
+import PaymentSuccessPage from './pages/PaymentSuccessPage.jsx';
+import PaymentFailurePage from './pages/PaymentFailurePage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import CategoriesPage from './pages/CategoriesPage.jsx';
@@ -16,6 +18,9 @@ import SubscriptionPage from './pages/SubscriptionPage.jsx';
 import RandomKeysPage from './pages/RandomKeysPage.jsx';
 import OffersPage from './pages/OffersPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
+import ProductDetailPage from './pages/ProductDetailPage.jsx';
+import BlogPage from './pages/BlogPage.jsx';
+import BlogDetailPage from './pages/BlogDetailPage.jsx';
 
 function App() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -36,9 +41,11 @@ function App() {
 
         {/* Pasamos isLoggedIn a las páginas de productos para habilitar/bloquear el botón de compra */}
         <Route path="gaming" element={<GamingPage isLoggedIn={isRegistered} />} />
+        <Route path="producto/:id" element={<ProductDetailPage isLoggedIn={isRegistered} />} />
         <Route path="software" element={<SoftwarePage isLoggedIn={isRegistered} />} />
-
         <Route path="carrito" element={<CartPage isLoggedIn={isRegistered} />} />
+        <Route path="pago-exitoso" element={<PaymentSuccessPage />} />
+        <Route path="pago-error" element={<PaymentFailurePage />} />
         <Route path="registro" element={<RegisterPage />} />
         <Route path="contacto" element={<ContactPage />} />
         <Route path="categorias" element={<CategoriesPage />} />
@@ -52,7 +59,8 @@ function App() {
         <Route path="politica-devoluciones" element={<InfoPage title="Política de devoluciones" description="Las condiciones de devolución estarán disponibles próximamente." />} />
         <Route path="ofertas" element={<OffersPage title="Ofertas" description="Pronto encontrarás aquí las ofertas y promociones de F4A." isLoggedIn={isRegistered} />} />
         <Route path="nosotros" element={<AboutPage title="Sobre F4A" description="Estamos preparando más información sobre nuestro proyecto." />} />
-        <Route path="blog" element={<InfoPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
+        <Route path="blog" element={<BlogPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
+        <Route path="blog/:id" element={<BlogDetailPage title="Blog" description="Muy pronto compartiremos novedades y contenido sobre productos digitales." />} />
         <Route path="inicio" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

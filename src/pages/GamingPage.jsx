@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
 import { productoService } from '../services/dbService';
 
 function GamingPage({ isLoggedIn }) {
+  const navigate = useNavigate();
   const [juegos, setJuegos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -18,14 +20,30 @@ function GamingPage({ isLoggedIn }) {
   }, []);
 
   const handleAgregarAlCarrito = (producto) => {
-    // Aquí puedes integrar la lógica para guardar el producto en el carrito del localStorage
+    // 1. Obtener el carrito actual desde localStorage (o un arreglo vacío si no existe)
+    const cart = JSON.parse(localStorage.getItem('f4a_cart') || '[]');
+
+    // 2. Comprobar si el producto ya fue agregado anteriormente
+    const index = cart.findIndex((item) => item.id === producto.id);
+
+    if (index >= 0) {
+      // Si ya existe en el carrito, aumentamos su cantidad en 1
+      cart[index].cantidad += 1;
+    } else {
+      // Si no existe, lo agregamos con una cantidad inicial de 1
+      cart.push({ ...producto, cantidad: 1 });
+    }
+
+    // 3. Guardar la lista actualizada de vuelta en localStorage
+    localStorage.setItem('f4a_cart', JSON.stringify(cart));
+
     alert(`¡Producto "${producto.nombre}" añadido al carrito con éxito!`);
   };
 
   return (
     <section className="route-page container my-4">
       <div className="mb-4">
-        <Text variant="p" className="page-eyebrow text-uppercase text-muted fw-bold">
+        <Text variant="p" className="page-eyebrow">
           CATÁLOGO F4A
         </Text>
         <Text variant="h1" className="page-title display-5 fw-bold">
@@ -50,21 +68,28 @@ function GamingPage({ isLoggedIn }) {
         <div className="row g-4">
           {juegos.map((juego) => (
             <div key={juego.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div className="card h-100 shadow-sm border-0">
+              {/* 1. Evento onClick en toda la tarjeta con cursor pointer */}
+              <div
+                className="card h-100 shadow-sm border-0"
+                style={{ cursor: 'pointer' }}
+                onClick={() => navigate(`/producto/${juego.id}`)}
+              >
                 <img
                   src={juego.imagen || 'https://via.placeholder.com/400x300'}
                   className="card-img-top"
                   alt={juego.nombre}
                   style={{ objectFit: 'cover', height: '180px' }}
                 />
+
                 <div className="card-body d-flex flex-column">
-                  <h5 className="card-title fw-bold">{juego.nombre}</h5>
-                  <p className="card-text text-muted small flex-grow-1">
+                  <h5 className="card-title text-white fw-bold">{juego.nombre}</h5>
+
+                  <p className="card-text small flex-grow-1">
                     {juego.descripcion}
                   </p>
 
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <span className="h5 mb-0 fw-bold text-success">
+                    <span className="h5 fw-bold mb-3">
                       ${juego.precio.toLocaleString('es-CL')}
                     </span>
                     {juego.esOferta && (
@@ -73,16 +98,19 @@ function GamingPage({ isLoggedIn }) {
                   </div>
 
                   <p className="card-text small mb-3">
-                    <small className={juego.stock <= 5 ? 'text-danger fw-bold' : 'text-muted'}>
+                    <small className={juego.stock <= 5 ? 'text-danger fw-bold' : 'text-primary fw-bold'}>
                       Stock disponible: {juego.stock}
                     </small>
                   </p>
 
-                  {/* RENDERIZADO CONDICIONAL: Igual que en tu Header */}
+                  {/* 2. Detener la propagación en el botón para evitar que abra la vista de detalle */}
                   {isLoggedIn ? (
                     <button
                       className="btn btn-primary w-100 mt-auto"
-                      onClick={() => handleAgregarAlCarrito(juego)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAgregarAlCarrito(juego);
+                      }}
                       disabled={juego.stock === 0}
                     >
                       {juego.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}

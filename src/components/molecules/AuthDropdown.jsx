@@ -65,8 +65,8 @@ export const AuthDropdown = ({ isOpen, onClose }) => {
         /* ================= VISTA: USUARIO LOGUEADO ================= */
         <div className="auth-logged-in text-center p-2">
           <h3 className="auth-title mb-2">¡Hola, {currentUser.nombre}!</h3>
-          <p className="text-muted small mb-1">
-            Rol: <span className="fw-bold text-capitalize">{currentUser.rol}</span>
+          <p className="text-secondary small mb-1">
+            Rol: <span className="fw-bold text-secondary">{currentUser.rol}</span>
           </p>
           <p className="text-secondary small text-truncate mb-3">
             {currentUser.correo}

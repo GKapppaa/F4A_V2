@@ -1,3 +1,5 @@
+// src/data/mockDatabase.js
+
 export const initialDatabase = {
     usuarios: [
         {
@@ -152,6 +154,56 @@ export const initialDatabase = {
             ],
             total: 16779,
             estado: "Completado" // 'Completado', 'Fallido', 'Pendiente'
+        }
+    ],
+    // NUEVA SECCIÓN DE BLOGS
+    blogs: [
+        {
+            id: "1",
+            titulo: "Guía Completa: Cómo activar tus llaves digitales en Steam",
+            fecha: "15 de Octubre, 2026",
+            autor: "Soporte F4A",
+            categoria: "Tutoriales",
+            imagen: "https://via.placeholder.com/600x350/0d1b2a/10b981?text=Steam+Key+Guide",
+            resumen: "Aprende paso a paso cómo canjear tus Random Steam Keys e instalar tus videojuegos de forma rápida y segura.",
+            contenido: `
+Canjear una llave digital en Steam es un proceso sencillo que toma menos de un minuto. Sigue estos pasos para activar tu código recién adquirido en F4A:
+
+1. Abre la aplicación de escritorio de Steam e inicia sesión en tu cuenta.
+2. En el menú superior, haz clic en **Productos** y selecciona **Activar un producto en Steam...**
+3. Sigue las instrucciones en pantalla, acepta el acuerdo de suscriptor e ingresa el código alfa-numérico enviado a tu correo.
+4. ¡Listo! El juego se añadirá inmediatamente a tu biblioteca para comenzar la descarga.
+            `
+        },
+        {
+            id: "2",
+            titulo: "Top 5 Software de Productividad recomendados para este 2026",
+            fecha: "10 de Octubre, 2026",
+            autor: "Equipo F4A",
+            categoria: "Software",
+            imagen: "https://via.placeholder.com/600x350/0d1b2a/10b981?text=Software+2026",
+            resumen: "Descubre cuáles son las licencias digitales indispensables para optimizar tu trabajo y rendimiento este año.",
+            contenido: `
+Contar con licencias oficiales para tus herramientas de trabajo te garantiza estabilidad y actualizaciones de seguridad constantes. Aquí te presentamos nuestro top 5 en la tienda:
+
+* **Sistemas Operativos:** Claves de activación para entornos de alto rendimiento.
+* **Suites de Ofimática:** Herramientas esenciales para redacción de documentos y hojas de cálculo.
+* **Utilidades y Antivirus:** Protección integral para tus dispositivos personales y corporativos.
+            `
+        },
+        {
+            id: "3",
+            titulo: "¿Cómo funcionan las Random Keys y cómo aprovechar las Ofertas?",
+            fecha: "02 de Octubre, 2026",
+            autor: "Comunidad F4A",
+            categoria: "Novedades",
+            imagen: "https://via.placeholder.com/600x350/0d1b2a/10b981?text=Random+Keys+F4A",
+            resumen: "Te explicamos la dinámica detrás de nuestros paquetes sorpresa y cómo asegurar títulos de calidad al mejor precio.",
+            contenido: `
+Las Llaves Aleatorias (Random Keys) son una excelente forma de expandir tu biblioteca de videojuegos a un precio reducido. Nuestro sistema selecciona de forma totalmente aleatoria una clave dentro del stock disponible de la categoría.
+
+Adicionalmente, te recomendamos revisar semanalmente nuestra pestaña de **Ofertas y Promociones** para encontrar descuentos directos en licencias destacadas.
+            `
         }
     ]
 };

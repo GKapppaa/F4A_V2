@@ -22,7 +22,7 @@ function AboutPage() {
         <div className="col-md-6">
           <div className="card-custom-dark h-100">
             <div className="card-body p-0">
-              <h3 className="card-custom-title mb-3">Nuestra Misión</h3>
+              <h3 className="mb-3 fw-bold">Nuestra Misión</h3>
               <p className="card-custom-text">
                 Brindar a los usuarios una experiencia de compra rápida, confiable y accesible para adquirir videojuegos, software y suscripciones digitales con entrega inmediata y un soporte transparente.
               </p>
@@ -34,7 +34,7 @@ function AboutPage() {
         <div className="col-md-6">
           <div className="card-custom-dark h-100">
             <div className="card-body p-0">
-              <h3 className="card-custom-title mb-3">Nuestro Catálogo y Servicios</h3>
+              <h3 className="mb-3 fw-bold">Nuestro Catálogo y Servicios</h3>
               <p className="card-custom-text mb-2">
                 Nos enfocamos en ofrecer soluciones digitales adaptadas a las necesidades de los jugadores y profesionales:
               </p>
@@ -51,9 +51,9 @@ function AboutPage() {
 
       {/* Equipo de Desarrollo */}
       <div className="card-custom-dark mt-4 text-center p-4">
-        <h4 className="card-custom-title mb-2">Equipo de Desarrollo</h4>
+        <h4 className="mb-3 fw-bold">Equipo de Desarrollo</h4>
         <p className="card-custom-text mb-0">
-          Desarrollado en el marco de la asignatura de Desarrollo Fullstack por <strong>Daniel Pinto Cabrera</strong> y <strong>Gustavo Oporto</strong>.
+          Desarrollado en el marco de la asignatura de Desarrollo Fullstack por <strong>Daniel Pinto</strong> y <strong>Gustavo Oporto</strong>.
         </p>
       </div>
     </section>

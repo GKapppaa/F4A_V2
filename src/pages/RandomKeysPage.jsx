@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
 import { productoService } from '../services/dbService';
 
 function RandomKeysPage({ isLoggedIn }) {
+    const navigate = useNavigate();
     const [randomKeys, setRandomKeys] = useState([]);
     const [cargando, setCargando] = useState(true);
 
@@ -18,13 +20,30 @@ function RandomKeysPage({ isLoggedIn }) {
     }, []);
 
     const handleAgregarAlCarrito = (producto) => {
-        alert(`Producto "${producto.nombre}" añadido al carrito.`);
+        // 1. Obtener el carrito actual desde localStorage (o un arreglo vacío si no existe)
+        const cart = JSON.parse(localStorage.getItem('f4a_cart') || '[]');
+
+        // 2. Comprobar si el producto ya fue agregado anteriormente
+        const index = cart.findIndex((item) => item.id === producto.id);
+
+        if (index >= 0) {
+            // Si ya existe en el carrito, aumentamos su cantidad en 1
+            cart[index].cantidad += 1;
+        } else {
+            // Si no existe, lo agregamos con una cantidad inicial de 1
+            cart.push({ ...producto, cantidad: 1 });
+        }
+
+        // 3. Guardar la lista actualizada de vuelta en localStorage
+        localStorage.setItem('f4a_cart', JSON.stringify(cart));
+
+        alert(`¡Producto "${producto.nombre}" añadido al carrito con éxito!`);
     };
 
     return (
         <section className="route-page container my-4">
             <div className="mb-4">
-                <Text variant="p" className="page-eyebrow text-uppercase text-muted fw-bold">
+                <Text variant="p" className="page-eyebrow">
                     CATÁLOGO F4A
                 </Text>
                 <Text variant="h1" className="page-title display-5 fw-bold">
@@ -49,7 +68,12 @@ function RandomKeysPage({ isLoggedIn }) {
                 <div className="row g-4">
                     {randomKeys.map((item) => (
                         <div key={item.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div className="card h-100 shadow-sm border-0">
+                            {/* Tarjeta cliqueable completa */}
+                            <div
+                                className="card h-100 shadow-sm border-0"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => navigate(`/producto/${item.id}`)}
+                            >
                                 <img
                                     src={item.imagen || 'https://via.placeholder.com/400x300'}
                                     className="card-img-top"
@@ -58,12 +82,12 @@ function RandomKeysPage({ isLoggedIn }) {
                                 />
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title fw-bold">{item.nombre}</h5>
-                                    <p className="card-text text-muted small flex-grow-1">
+                                    <p className="card-text small flex-grow-1">
                                         {item.descripcion}
                                     </p>
 
                                     <div className="d-flex justify-content-between align-items-center mb-3">
-                                        <span className="h5 mb-0 fw-bold text-success">
+                                        <span className="h5 fw-bold mb-3">
                                             ${item.precio.toLocaleString('es-CL')}
                                         </span>
                                         {item.esOferta && (
@@ -72,7 +96,7 @@ function RandomKeysPage({ isLoggedIn }) {
                                     </div>
 
                                     <p className="card-text small mb-3">
-                                        <small className={item.stock <= 5 ? 'text-danger fw-bold' : 'text-muted'}>
+                                        <small className={item.stock <= 5 ? 'text-danger fw-bold' : 'text-primary fw-bold'}>
                                             Stock disponible: {item.stock}
                                         </small>
                                     </p>
@@ -81,7 +105,11 @@ function RandomKeysPage({ isLoggedIn }) {
                                     {isLoggedIn ? (
                                         <button
                                             className="btn btn-primary w-100 mt-auto"
-                                            onClick={() => handleAgregarAlCarrito(item)}
+                                            onClick={(e) => {
+                                                // Detener la propagación para evitar redirigir al detalle
+                                                e.stopPropagation();
+                                                handleAgregarAlCarrito(item);
+                                            }}
                                             disabled={item.stock === 0}
                                         >
                                             {item.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}

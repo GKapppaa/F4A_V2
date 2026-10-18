@@ -10,10 +10,11 @@ export const initDB = () => {
     }
 };
 
-// Obtener todos los datos
+// Obtener todos los datos con respaldo seguro
 const getDB = () => {
     initDB();
-    return JSON.parse(localStorage.getItem(DB_KEY));
+    const db = localStorage.getItem(DB_KEY);
+    return db ? JSON.parse(db) : initialDatabase;
 };
 
 // Guardar cambios
@@ -25,13 +26,13 @@ const saveDB = (data) => {
 // 1. MÓDULO PRODUCTOS (CRUD)
 // ==========================================
 export const productoService = {
-    getAll: () => getDB().productos,
+    getAll: () => getDB().productos || [],
 
-    getById: (id) => getDB().productos.find(p => p.id === Number(id)),
+    getById: (id) => (getDB().productos || []).find(p => p.id === Number(id)),
 
-    getCriticos: (limiteStock = 5) => getDB().productos.filter(p => p.stock <= limiteStock),
+    getCriticos: (limiteStock = 5) => (getDB().productos || []).filter(p => p.stock <= limiteStock),
 
-    getOfertas: () => getDB().productos.filter(p => p.esOferta),
+    getOfertas: () => (getDB().productos || []).filter(p => p.esOferta),
 
     create: (nuevoProducto) => {
         const db = getDB();
@@ -58,10 +59,10 @@ export const productoService = {
 // 2. MÓDULO USUARIOS (CRUD + Auth)
 // ==========================================
 export const usuarioService = {
-    getAll: () => getDB().usuarios,
+    getAll: () => getDB().usuarios || [],
 
     login: (correo, password) => {
-        const usuarios = getDB().usuarios;
+        const usuarios = getDB().usuarios || [];
         return usuarios.find(u => u.correo === correo && u.password === password) || null;
     },
 
@@ -84,9 +85,9 @@ export const usuarioService = {
 // 3. MÓDULO VENTAS / ÓRDENES (CRUD)
 // ==========================================
 export const ventaService = {
-    getAll: () => getDB().ventas,
+    getAll: () => getDB().ventas || [],
 
-    getByUsuarioId: (usuarioId) => getDB().ventas.filter(v => v.usuarioId === Number(usuarioId)),
+    getByUsuarioId: (usuarioId) => (getDB().ventas || []).filter(v => v.usuarioId === Number(usuarioId)),
 
     crearOrden: (datosOrden) => {
         const db = getDB();
@@ -109,4 +110,13 @@ export const ventaService = {
         saveDB(db);
         return nuevaOrden;
     }
+};
+
+// ==========================================
+// 4. MÓDULO BLOGS
+// ==========================================
+export const blogService = {
+    getAll: () => getDB().blogs || [],
+
+    getById: (id) => (getDB().blogs || []).find(b => String(b.id) === String(id))
 };
