@@ -1,4 +1,4 @@
-import { Text } from "../atoms/Text";
+import Text from "../atoms/Text";
 function FormCard({title, children, onSubmit, className=""}){
     return(
         <div className={className}>

@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import MainLayout from '../../../components/templates/MainLayout';
 
-describe('MainLayout template', () => {
-  it('mantiene Header y Footer alrededor del contenido de la ruta', () => {
+describe('MainLayout template: estructura compartida', () => {
+  it('muestra Header, contenido de ruta y Footer', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Routes>

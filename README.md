@@ -89,7 +89,7 @@ Las claves de almacenamiento usadas por la aplicación incluyen `f4a_database`, 
 
 ## Pruebas
 
-Las pruebas se ejecutan con **Jasmine + Karma** en Chromium Headless y React Testing Library. La suite contiene 12 pruebas sobre átomos, moléculas, organismos y el template principal.
+Las pruebas se ejecutan con **Jasmine + Karma** en Chromium Headless y React Testing Library. La suite se enfoca en `Button`, `SearchBar`, `ProductCard` y `MainLayout`: hay **3 archivos de prueba separados por componente**, con un caso unitario en cada archivo (12 archivos y 12 pruebas en total).
 
 ```bash
 npm test

@@ -1,10 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import SearchBar from '../../../components/molecules/SearchBar';
 
-describe('SearchBar molecule', () => {
-  it('envía al callback el texto escrito al enviar el formulario', () => {
+describe('SearchBar molecule: envío de búsqueda', () => {
+  it('envía al callback el texto escrito', () => {
     const onSearch = jasmine.createSpy('onSearch');
-
     render(<SearchBar onSearch={onSearch} />);
     fireEvent.change(screen.getByPlaceholderText('Buscar'), {
       target: { value: 'Minecraft' },
