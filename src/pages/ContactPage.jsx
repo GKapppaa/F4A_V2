@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Text from '../components/atoms/Text';
 
-function ContactPage({ isLoggedIn }) {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    correo: '',
-    mensaje: ''
-  });
+function getInitialFormData() {
+  const formData = { nombre: '', correo: '', mensaje: '' };
+
+  try {
+    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
+    if (!session) return formData;
+
+    const user = JSON.parse(session);
+    return {
+      ...formData,
+      nombre: `${user.nombre || ''} ${user.apellidos || ''}`.trim(),
+      correo: user.correo || '',
+    };
+  } catch (error) {
+    console.error('Error al leer los datos de sesión:', error);
+    return formData;
+  }
+}
+
+function ContactPage() {
+  const [formData, setFormData] = useState(getInitialFormData);
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  // Cargar y autocompletar datos si el usuario inició sesión
-  useEffect(() => {
-    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
-    if (session) {
-      try {
-        const usuarioLogueado = JSON.parse(session);
-        setFormData((prev) => ({
-          ...prev,
-          nombre: `${usuarioLogueado.nombre || ''} ${usuarioLogueado.apellidos || ''}`.trim(),
-          correo: usuarioLogueado.correo || ''
-        }));
-      } catch (err) {
-        console.error('Error al parsear los datos de sesión:', err);
-      }
-    }
-  }, [isLoggedIn]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

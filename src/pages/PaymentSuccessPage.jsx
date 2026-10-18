@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Text from '../components/atoms/Text';
-import { ventaService, initDB } from '../services/dbService';
+import { ventaService } from '../services/dbService';
 
 function PaymentSuccessPage() {
     const navigate = useNavigate();
-    const [ultimaOrden, setUltimaOrden] = useState(null);
-
-    useEffect(() => {
-        initDB();
-        // Obtener las ventas de la base de datos simulada
-        const ventas = ventaService.getAll();
-        if (ventas && ventas.length > 0) {
-            // Tomar la última orden registrada
-            setUltimaOrden(ventas[ventas.length - 1]);
-        }
-    }, []);
+    const ventas = ventaService.getAll();
+    const ultimaOrden = ventas.at(-1) || null;
 
     const handlePrint = () => {
         window.print();

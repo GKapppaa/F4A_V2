@@ -1,41 +1,34 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Text from '../components/atoms/Text';
 
 function PaymentFailurePage() {
     const navigate = useNavigate();
-    const [attemptData, setAttemptData] = useState(null);
-
-    useEffect(() => {
-        // Cargar los datos del último intento de pago desde f4a_failed_order o f4a_cart
+    const attemptData = (() => {
         const failedData = localStorage.getItem('f4a_failed_order');
         if (failedData) {
             try {
-                setAttemptData(JSON.parse(failedData));
+                return JSON.parse(failedData);
             } catch (e) {
                 console.error('Error al leer orden fallida:', e);
             }
-        } else {
-            // Datos de prueba por defecto basados en el prototipo si no hay sesión previa
-            setAttemptData({
-                nroBoleta: 20240705,
-                cliente: {
-                    nombre: 'Pedro Hacker',
-                    correo: 'pedro.hacker20@example.com',
-                    calle: 'Los Crisantemos, Edificio Norte',
-                    departamento: 'Depto 603',
-                    region: 'Región Metropolitana de Santiago',
-                    comuna: 'Cerrillos',
-                    indicaciones: 'El martes no estaremos en el depto, pero puede dejárselo con el conserje.'
-                },
-                items: [
-                    { nombre: 'Minecraft', precio: 2695, cantidad: 4, subtotal: 10780 },
-                    { nombre: 'Red Dead Redemption 2', precio: 5999, cantidad: 1, subtotal: 5999 }
-                ],
-                total: 16779
-            });
         }
-    }, []);
+        return {
+            nroBoleta: 20240705,
+            cliente: {
+                nombre: 'Pedro Hacker',
+                correo: 'pedro.hacker20@example.com',
+                calle: 'Los Crisantemos, Edificio Norte',
+                departamento: 'Depto 603',
+                region: 'Región Metropolitana de Santiago',
+                comuna: 'Cerrillos',
+                indicaciones: 'El martes no estaremos en el depto, pero puede dejárselo con el conserje.'
+            },
+            items: [
+                { nombre: 'Minecraft', precio: 2695, cantidad: 4, subtotal: 10780 },
+                { nombre: 'Red Dead Redemption 2', precio: 5999, cantidad: 1, subtotal: 5999 }
+            ],
+            total: 16779
+        };
+    })();
 
     return (
         <section className="route-page container my-5">

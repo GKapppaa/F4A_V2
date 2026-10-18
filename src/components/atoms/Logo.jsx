@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom'; // 1. Importamos Link
 import logoImg from '../../assets/images/logo.webp';
 import '../../styles/atoms/Logo.css';

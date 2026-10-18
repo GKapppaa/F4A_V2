@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { blogService, initDB } from '../services/dbService';
+import { blogService } from '../services/dbService';
 
 function BlogPage() {
     const navigate = useNavigate();
-    const [blogs, setBlogs] = useState([]);
-
-    useEffect(() => {
-        // 1. Asegura que los datos en localStorage existan
-        initDB();
-
-        // 2. Obtiene las publicaciones desde la base de datos simulada
-        const data = blogService.getAll();
-        setBlogs(data || []);
-    }, []);
+    const blogs = blogService.getAll();
 
     return (
         <section className="route-page container my-5">

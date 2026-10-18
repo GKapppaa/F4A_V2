@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Input from '../atoms/Input.jsx';
 import Boton from '../atoms/Boton.jsx';
 import '../../styles/molecules/SearchBar.css'

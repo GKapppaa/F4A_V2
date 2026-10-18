@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // 1. Importamos useNavigate
 import Logo from '../atoms/Logo';
 import '../../styles/organisms/Header.css';
@@ -81,10 +81,9 @@ export const Header = ({ isRegistered = false }) => {
             Acceder
           </button>
 
-          <AuthDropdown
-            isOpen={isAuthOpen}
+          {isAuthOpen && <AuthDropdown
             onClose={() => setIsAuthOpen(false)}
-          />
+          />}
         </div>
       </div>
 

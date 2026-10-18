@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/pages/Pages.css';
@@ -23,15 +23,9 @@ import BlogPage from './pages/BlogPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
 
 function App() {
-  const [isRegistered, setIsRegistered] = useState(false);
-
-  useEffect(() => {
-    // Verificamos si existe una sesión activa almacenada en el localStorage
-    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
-    if (session) {
-      setIsRegistered(true);
-    }
-  }, []);
+  const [isRegistered] = useState(() => Boolean(
+    localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion')
+  ));
 
   return (
     <Routes>

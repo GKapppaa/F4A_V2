@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { ventaService, initDB } from '../services/dbService';
+import { ventaService } from '../services/dbService';
 
-function CartPage({ isLoggedIn }) {
-  const navigate = useNavigate();
+function readCartItems() {
+  try {
+    return JSON.parse(localStorage.getItem('f4a_cart') || '[]');
+  } catch (error) {
+    console.error('Error al leer el carrito:', error);
+    return [];
+  }
+}
 
-  // Estado del carrito de compras
-  const [cartItems, setCartItems] = useState([]);
-
-  // Estado del formulario de checkout
-  const [formData, setFormData] = useState({
+function readCheckoutFormData() {
+  const defaults = {
     nombre: '',
     apellidos: '',
     correo: '',
@@ -18,46 +21,41 @@ function CartPage({ isLoggedIn }) {
     departamento: '',
     region: 'Región Metropolitana de Santiago',
     comuna: 'Cerrillos',
-    indicaciones: ''
-  });
+    indicaciones: '',
+  };
+
+  try {
+    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
+    if (!session) return defaults;
+
+    const user = JSON.parse(session);
+    return {
+      ...defaults,
+      nombre: user.nombre || '',
+      apellidos: user.apellidos || '',
+      correo: user.correo || '',
+      calle: user.direccion?.calle || '',
+      departamento: user.direccion?.departamento || '',
+      region: user.direccion?.region || defaults.region,
+      comuna: user.direccion?.comuna || defaults.comuna,
+      indicaciones: user.direccion?.indicaciones || '',
+    };
+  } catch (error) {
+    console.error('Error al leer la sesión:', error);
+    return defaults;
+  }
+}
+
+function CartPage() {
+  const navigate = useNavigate();
+
+  // Estado del carrito de compras
+  const [cartItems, setCartItems] = useState(readCartItems);
+
+  // Estado del formulario de checkout
+  const [formData, setFormData] = useState(readCheckoutFormData);
 
   const [mensaje, setMensaje] = useState({ tipo: '', texto: '' });
-
-  // 1. Cargar carrito y autocompletar usuario al montar
-  useEffect(() => {
-    initDB();
-
-    // Cargar productos del carrito guardados en localStorage
-    const savedCart = localStorage.getItem('f4a_cart');
-    if (savedCart) {
-      try {
-        setCartItems(JSON.parse(savedCart));
-      } catch (e) {
-        console.error('Error al leer el carrito:', e);
-      }
-    }
-
-    // Autocompletar datos del cliente si hay sesión activa
-    const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
-    if (session) {
-      try {
-        const user = JSON.parse(session);
-        setFormData((prev) => ({
-          ...prev,
-          nombre: user.nombre || '',
-          apellidos: user.apellidos || '',
-          correo: user.correo || '',
-          calle: user.direccion?.calle || '',
-          departamento: user.direccion?.departamento || '',
-          region: user.direccion?.region || 'Región Metropolitana de Santiago',
-          comuna: user.direccion?.comuna || 'Cerrillos',
-          indicaciones: user.direccion?.indicaciones || ''
-        }));
-      } catch (e) {
-        console.error('Error al leer la sesión:', e);
-      }
-    }
-  }, [isLoggedIn]);
 
   // Actualizar localStorage cada vez que cambia el carrito
   const updateCart = (newCart) => {
@@ -114,7 +112,6 @@ function CartPage({ isLoggedIn }) {
 
     // Preparar objeto con los datos de la orden
     const datosOrden = {
-      nroBoleta: Math.floor(20240000 + Math.random() * 10000),
       cliente: {
         nombre: `${formData.nombre} ${formData.apellidos}`.trim(),
         correo: formData.correo,
@@ -145,7 +142,7 @@ function CartPage({ isLoggedIn }) {
 
     // FLUJO NORMAL / PAGO EXITOSO
     try {
-      const nuevaVenta = ventaService.crearOrden(datosOrden);
+      ventaService.crearOrden(datosOrden);
       handleClearCart();
       navigate('/pago-exitoso');
     } catch (err) {
@@ -397,7 +394,6 @@ function CartPage({ isLoggedIn }) {
                     type="submit"
                     className="btn btn-success w-100 py-2 fw-bold"
                     style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
-                    onClick={(e) => handleSubmitOrden(e, false)}
                   >
                     Pagar Ahora ${totalPagar.toLocaleString('es-CL')}
                   </button>

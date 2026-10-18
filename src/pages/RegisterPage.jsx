@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
 import { usuarioService, initDB } from '../services/dbService';

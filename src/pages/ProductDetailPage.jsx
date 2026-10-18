@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
 import { productoService } from '../services/dbService';
@@ -6,17 +5,7 @@ import { productoService } from '../services/dbService';
 function ProductDetailPage({ isLoggedIn }) {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [producto, setProducto] = useState(null);
-    const [cargando, setCargando] = useState(true);
-
-    useEffect(() => {
-        // Buscar producto por ID en la base de datos simulada
-        const prod = productoService.getById(id);
-        if (prod) {
-            setProducto(prod);
-        }
-        setCargando(false);
-    }, [id]);
+    const producto = productoService.getById(id);
 
     const handleAgregarAlCarrito = (producto, cantidadSeleccionada = 1) => {
         // 1. Obtener el carrito actual desde localStorage
@@ -38,16 +27,6 @@ function ProductDetailPage({ isLoggedIn }) {
 
         alert(`¡${cantidadSeleccionada} unidad(es) de "${producto.nombre}" añadida(s) al carrito con éxito!`);
     };
-
-    if (cargando) {
-        return (
-            <div className="container my-5 text-center">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Cargando detalle del producto...</span>
-                </div>
-            </div>
-        );
-    }
 
     if (!producto) {
         return (

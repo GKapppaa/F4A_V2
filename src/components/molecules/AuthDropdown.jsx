@@ -1,37 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { usuarioService, initDB } from '../../services/dbService';
+import { useState } from 'react';
+import { usuarioService } from '../../services/dbService';
 import '../../styles/molecules/AuthDropdown.css';
 
-export const AuthDropdown = ({ isOpen, onClose }) => {
+export const AuthDropdown = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [currentUser, setCurrentUser] = useState(null);
-
-  // Cada vez que se abre el menú, verificamos si hay un usuario logueado
-  useEffect(() => {
-    if (isOpen) {
-      initDB();
-      const session = localStorage.getItem('f4a_session');
-      if (session) {
-        setCurrentUser(JSON.parse(session));
-      } else {
-        setCurrentUser(null);
-      }
-      setError('');
-      setEmail('');
-      setPassword('');
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const session = localStorage.getItem('f4a_session') || localStorage.getItem('usuario_sesion');
+      return session ? JSON.parse(session) : null;
+    } catch {
+      return null;
     }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-
-    // Asegurar que la base de datos simulada esté inicializada
-    initDB();
 
     // Utilizamos el servicio importado correctamente arriba
     const usuarioEncontrado = usuarioService.login(email, password);

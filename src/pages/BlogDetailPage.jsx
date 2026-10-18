@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Text from '../components/atoms/Text';
-import { blogService, initDB } from '../services/dbService';
+import { blogService } from '../services/dbService';
 
 function BlogDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [blog, setBlog] = useState(null);
-
-    useEffect(() => {
-        initDB();
-        const item = blogService.getById(id);
-        setBlog(item);
-    }, [id]);
+    const blog = blogService.getById(id);
 
     if (!blog) {
         return (
