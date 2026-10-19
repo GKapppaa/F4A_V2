@@ -8,6 +8,52 @@
   margin-bottom: 2rem;
 }
 
+.admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.admin-nav a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  color: #dce5df;
+  background: #111a17;
+  border: 1px solid #293a31;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.admin-nav a:hover,
+.admin-nav a:focus-visible {
+  color: #07110c;
+  background: #14fd88;
+  border-color: #14fd88;
+}
+
+.admin-profile,
+.admin-receipt {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  color: #dce5df;
+  background: #111a17;
+  border: 1px solid #293a31;
+  border-radius: 0.85rem;
+}
+
+.admin-profile h2 {
+  margin-bottom: 0.65rem;
+  color: #14fd88;
+  font-size: 1.1rem;
+}
+
+.admin-profile p {
+  margin-bottom: 0.25rem;
+}
+
 .admin-page-header .page-title {
   color: black;
 }
@@ -73,6 +119,32 @@
   background: #111a17;
   border: 1px solid #293a31;
   border-radius: 0.8rem;
+}
+
+.admin-subsection {
+  margin-top: 1.5rem;
+}
+
+.admin-critical-row td {
+  color: #ffe0a3;
+  background-color: rgba(138, 74, 10, 0.16);
+}
+
+.admin-receipt {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.admin-receipt .admin-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-receipt ul {
+  padding-left: 1.2rem;
+  color: #c5d1ca;
 }
 
 .admin-form-title {

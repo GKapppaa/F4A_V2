@@ -85,6 +85,34 @@ export const productoService = {
     }
 };
 
+export const categoriaService = {
+    getAll: () => getDB().categorias || [],
+
+    create: (nuevaCategoria) => {
+        const db = getDB();
+        db.categorias = db.categorias || [];
+        const id = db.categorias.reduce((maxId, categoria) => Math.max(maxId, categoria.id), 0) + 1;
+        const categoria = { ...nuevaCategoria, id };
+        db.categorias.push(categoria);
+        saveDB(db);
+        return categoria;
+    },
+
+    update: (id, datosActualizados) => {
+        const db = getDB();
+        db.categorias = (db.categorias || []).map(categoria =>
+            categoria.id === Number(id) ? { ...categoria, ...datosActualizados } : categoria
+        );
+        saveDB(db);
+    },
+
+    delete: (id) => {
+        const db = getDB();
+        db.categorias = (db.categorias || []).filter(categoria => categoria.id !== Number(id));
+        saveDB(db);
+    }
+};
+
 // ==========================================
 // 2. MÓDULO USUARIOS (CRUD + Auth)
 // ==========================================
@@ -98,7 +126,7 @@ export const usuarioService = {
 
     create: (nuevoUsuario) => {
         const db = getDB();
-        const usuario = { ...nuevoUsuario, id: Date.now(), rol: 'cliente' };
+        const usuario = { ...nuevoUsuario, id: Date.now(), rol: nuevoUsuario.rol || 'cliente' };
         db.usuarios.push(usuario);
         saveDB(db);
         return usuario;
@@ -107,6 +135,12 @@ export const usuarioService = {
     update: (id, datosActualizados) => {
         const db = getDB();
         db.usuarios = db.usuarios.map(u => u.id === Number(id) ? { ...u, ...datosActualizados } : u);
+        saveDB(db);
+    },
+
+    delete: (id) => {
+        const db = getDB();
+        db.usuarios = (db.usuarios || []).filter(usuario => usuario.id !== Number(id));
         saveDB(db);
     }
 };

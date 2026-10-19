@@ -69,7 +69,7 @@ function App() {
         <Route path="inicio" element={<Navigate to="/" replace />} />
         <Route
           path="admin"
-          element={isAdmin ? <AdminPage /> : <Navigate to="/" replace />}
+          element={isAdmin ? <AdminPage currentUser={currentUser} /> : <Navigate to="/" replace />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import AdminPage from '../../pages/AdminPage';
 import { productoService, ticketService, ventaService } from '../../data/dbService';
 
@@ -16,7 +17,7 @@ describe('AdminPage', () => {
   });
 
   it('muestra inventario, ventas y tickets que devuelven los servicios', () => {
-    render(<AdminPage />);
+    render(<MemoryRouter><AdminPage /></MemoryRouter>);
 
     expect(screen.getByRole('heading', { name: 'Panel de administración' })).toBeTruthy();
     expect(screen.getByText('Minecraft')).toBeTruthy();
@@ -26,9 +27,9 @@ describe('AdminPage', () => {
 
   it('crea un producto con los valores del formulario', () => {
     const createSpy = spyOn(productoService, 'create');
-    render(<AdminPage />);
+    render(<MemoryRouter><AdminPage /></MemoryRouter>);
 
-    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'Producto nuevo' } });
+    fireEvent.change(screen.getAllByLabelText('Nombre')[0], { target: { value: 'Producto nuevo' } });
     fireEvent.change(screen.getByLabelText('Precio (CLP)'), { target: { value: '9900' } });
     fireEvent.change(screen.getByLabelText('Stock'), { target: { value: '8' } });
     fireEvent.click(screen.getByRole('button', { name: 'Crear producto' }));
@@ -44,7 +45,7 @@ describe('AdminPage', () => {
 
   it('permite marcar un ticket pendiente como resuelto', () => {
     const updateStatusSpy = spyOn(ticketService, 'updateStatus');
-    render(<AdminPage />);
+    render(<MemoryRouter><AdminPage /></MemoryRouter>);
 
     fireEvent.click(screen.getByRole('button', { name: 'Marcar resuelto' }));
 
